@@ -1,3 +1,5 @@
+require 'byebug'
+
 class MaxIntSet
   def initialize(max)
     @store = Array.new(max)
@@ -34,18 +36,36 @@ class IntSet
   end
 
   def insert(num)
+    bucket_idx = num % @store.length
+    if include?(num)
+      raise
+    else
+      #byebug
+      @store[bucket_idx] << num
+      true
+    end
   end
 
   def remove(num)
+    if include?(num)
+      self[num].delete(num)
+    else
+      raise "no el"
+    end
+    self[num]
   end
 
   def include?(num)
+    bucket_idx = num % @store.length
+    self[num].include?(num)
   end
 
   private
 
   def [](num)
     # optional but useful; return the bucket corresponding to `num`
+    bucket_idx = num % @store.length
+    @store[bucket_idx]
   end
 
   def num_buckets
