@@ -19,16 +19,18 @@ end
 
 class String
   def hash
-    ords = self.chars.map{|chr| chr.ord }
+    # ords = self.chars.map{|chr| chr.ord }
+    #
+    # xor_res = 0
+    # ords[0...-1].each_index do |idx|
+    #   curr_ord = ords[idx]
+    #   next_ord = ords[idx+1]
+    #
+    #   xor_res += curr_ord ^ next_ord
+    # end
+    # xor_res
 
-    xor_res = 0
-    ords[0...-1].each_index do |idx|
-      curr_ord = ords[idx]
-      next_ord = ords[idx+1]
-
-      xor_res += curr_ord ^ next_ord
-    end
-    xor_res
+    self.chars.hash
   end
 end
 
